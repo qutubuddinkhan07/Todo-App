@@ -1,8 +1,6 @@
 package com.todo.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -14,41 +12,6 @@ import com.todo.util.JPAUtil;
 
 public class TaskDAO {
 	private SessionFactory sessionFactory;
-
-	public TaskDAO() {
-		try {
-			// Read from environmene variables (set on Render)
-			String dbHost = System.getenv("DB_HOST");
-			String dbPort = System.getenv("DB_PORT");
-			String dbName = System.getenv("DB_NAME");
-			String dbUser = System.getenv("DB_USER");
-			String dbPassword = System.getenv("DB_PASSWORD");
-
-			// If environment variables exist, override JPA properties
-			if (dbHost != null && !dbHost.isEmpty()) {
-				Map<String, String> properties = new HashMap<>();
-
-				// Build JDBC URL
-				String jdbcUrl = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName
-						+ "?useSSL=true&requireSSL=true&serverTimezone=UTC";
-
-				// Override JPA properties
-				properties.put("javax.persistence.jdbc.url", jdbcUrl);
-				properties.put("javax.persistence.jdbc.user", dbUser);
-				properties.put("javax.persistence.jdbc.password", dbPassword);
-
-				// Update JPAUtil with these properties
-				JPAUtil.overrideProperties(properties);
-				System.out.println("Using environment variables for database connection");
-				System.out.println("Connected to: " + dbHost + ":" + dbPort + "/" + dbName);
-			} else {
-				System.out.println("Using default persistence.xml configuration");
-			}
-		} catch (Exception e) {
-			System.err.println("Error configuring database connection: " + e.getMessage());
-			e.printStackTrace();
-		}
-	}
 
 	// create
 	public Task createTask(Task task) {
@@ -109,6 +72,9 @@ public class TaskDAO {
 			et.commit();
 			return updatedTask;
 		} catch (Exception e) {
+			if (et.isActive()) {
+				et.rollback();
+			}
 			e.printStackTrace();
 			return null;
 		} finally {

@@ -39,7 +39,11 @@ const TaskItem = ({ task, onToggle, onDelete, onEdit }) => {
       <div className="task-content">
         <div className="task-header">
           <h3 className="task-title">{task.title}</h3>
-          <span className="task-date">{formDate(task.createdAt)}</span>
+          {task.createdAt ? (
+            <span className="task-date">{formDate(task.createdAt)}</span>
+          ) : (
+            <span className="task-date">{formDate(task.updatedAt)}</span>
+          )}
         </div>
 
         {task.description && (
