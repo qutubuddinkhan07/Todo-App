@@ -24,6 +24,13 @@ A full-stack task management application built with React (frontend) and Java Se
 - **React Loader Spinner** - Loading animations
 - **CSS3** - Styling with modern features
 
+### Screeenshots
+<img width="1919" height="1079" alt="Screenshot 2026-03-12 022400" src="https://github.com/user-attachments/assets/1322edb7-6bb4-407f-8eab-3692c0d980c9" />
+<img width="1919" height="1079" alt="Screenshot 2026-03-12 022413" src="https://github.com/user-attachments/assets/1c885748-3247-4e79-9949-98e27930ccd6" />
+<img width="1919" height="1079" alt="Screenshot 2026-03-12 022428" src="https://github.com/user-attachments/assets/16287a25-183e-4ca7-9bf1-7e9fd675f27b" />
+<img width="1919" height="1079" alt="Screenshot 2026-03-12 022434" src="https://github.com/user-attachments/assets/f890d68d-7ec0-4037-a3e1-83743517a7b0" />
+<img width="1919" height="1079" alt="Screenshot 2026-03-12 022441" src="https://github.com/user-attachments/assets/e0a4de8d-c7c0-443e-b598-20c46c5db12f" />
+
 ### Backend
 
 - **Java Servlets** - REST API endpoints
